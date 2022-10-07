@@ -7,13 +7,7 @@ class UserController extends StateNotifier<List<User>> {
   final UserRepository _userRepository;
 
   UserController(this._userRepository) : super([]) {
-    // getUsers();
-    testCurrent();
-  }
-
-  Future<void> testCurrent() async {
-    final string = _userRepository.getCurrent();
-    print(string);
+    getUsers();
   }
 
   Future<void> getUsers() async {

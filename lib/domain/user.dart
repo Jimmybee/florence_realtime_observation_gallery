@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+
+import '../ui/user_marker.dart';
+
 class UserResponse {
   UserResponse({
     required this.users,
@@ -37,5 +43,20 @@ class User {
     _data['longitude'] = longitude;
     _data['last_active_at'] = lastActiveAt;
     return _data;
+  }
+
+  Marker toMarker() {
+    return Marker(
+      point: LatLng(latitude, longitude),
+      builder: (context) {
+        final seconds = DateTime.parse(lastActiveAt).second.toDouble();
+        final milliseconds = DateTime.parse(lastActiveAt).millisecond.toDouble() / 1000;
+        return UserMarker(
+          icon: Icons.person,
+          color: Colors.blue,
+          seconds: seconds + milliseconds,
+        );
+      },
+    );
   }
 }

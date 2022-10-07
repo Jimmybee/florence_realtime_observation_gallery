@@ -10,7 +10,7 @@ class ShiftsController extends ChangeNotifier {
   final ShiftsRepository _shiftsRepository;
 
   ShiftsController(this._shiftsRepository) {
-    // get();
+    get();
   }
 
   Future<void> get() async {

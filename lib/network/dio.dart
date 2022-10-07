@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 
 // const String baseUrl = 'https://aa43-37-157-37-138.eu.ngrok.io/';
-// const String baseUrl = 'https://7013-82-0-246-2.ngrok.io/';
-const String baseUrl = 'https://test.florence.co.uk/';
+const String baseUrl = 'https://7013-82-0-246-2.ngrok.io/';
+const String frBaseUrl = 'https://test.florence.co.uk/';
+const String ukBaseUrl = 'https://test2.florence.co.uk/';
 
 class DioClient {
-  DioClient() {
+  DioClient(String baseUrl) {
     _dio = Dio();
     dio.options.baseUrl = baseUrl;
     dio.options.connectTimeout = 5000;

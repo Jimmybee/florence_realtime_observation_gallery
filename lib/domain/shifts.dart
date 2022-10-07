@@ -1,3 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+
+import '../ui/colors/colors.dart';
+import '../ui/user_marker.dart';
+
 class ShiftsResponse {
   ShiftsResponse({
     required this.postedShifts,
@@ -37,5 +44,19 @@ class Shift {
     _data['longitude'] = longitude;
     _data['latitude'] = latitude;
     return _data;
+  }
+
+  Marker toMarker() {
+    return Marker(
+      point: LatLng(latitude, longitude),
+      builder: (context) {
+        final seconds = DateTime.parse(createdAt).second.toDouble();
+        return UserMarker(
+          seconds: seconds,
+          icon: Icons.work,
+          color: kFlorencePurpleLight,
+        );
+      },
+    );
   }
 }

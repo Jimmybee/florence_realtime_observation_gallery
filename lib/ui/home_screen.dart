@@ -33,12 +33,21 @@ class HomeViewState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, child) {
-      final users = ref.watch(userControllerProvider);
-      final shifts = ref.watch(shiftsControllerProvider).shifts;
+      final users = ref.watch(userControllerProvider).map((e) => e.toMarker()).toList();
+      final shifts = ref.watch(shiftsControllerProvider).shifts.map((e) => e.toMarker()).toList();
+      final ukShifts = ref.watch(ukShiftsControllerProvider).shifts.map((e) => e.toMarker()).toList();
+      final ukUsers = ref.watch(ukUserControllerProvider).map((e) => e.toMarker()).toList();
 
-      return MapContainer(
-        users: users,
-        shifts: shifts,
+      return Stack(
+        children: [
+          MapContainer(
+            users: [...users, ...ukUsers],
+            shifts: [...shifts, ...ukShifts],
+          ),
+          Row(
+            children: [Text("Text")],
+          ),
+        ],
       );
     });
   }
